@@ -12,7 +12,7 @@ function App() {
   return (
     <Admin authProvider={authProvider} dataProvider={dataProvider} dashboard={Dashboard}>
       <Resource name="posts" list={PostList} edit={PostEdit} create={PostCreate} icon={PostIcon}/>
-      <Resource name="users" list={UserList} show={ShowGuesser} recordRepresentation={"name"} icon={UserIcon}/>
+      <Resource name="users" list={ListGuesser} icon={UserIcon}/>
     </Admin>
   )
 }

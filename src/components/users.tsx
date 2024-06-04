@@ -1,4 +1,4 @@
-import { Datagrid, EmailField, List, SimpleList, TextField, UrlField } from 'react-admin';
+import { Datagrid, EmailField, List, NumberField, ReferenceField, SimpleList, TextField, UrlField } from 'react-admin';
 import { useMediaQuery, Theme } from "@mui/material";
 import MyUrlField from './MyUrlField';
 
@@ -15,13 +15,12 @@ export const UserList = () => {
       ) : (
         <Datagrid rowClick="show">
           <TextField source="id" />
-          <TextField source="name" />
-          <TextField source="username" />
           <EmailField source="email" />
-          <TextField source="address.street" />
-          <TextField source="phone" />
-          <MyUrlField source="website" />
-          <TextField source="company.name" />
+          <NumberField source="phone" />
+          <TextField source="fullName" />
+          <TextField source="username" />
+          <TextField source="password" />
+          <ReferenceField source="rolesId" reference="roles" />
         </Datagrid>
       )}
     </List>
