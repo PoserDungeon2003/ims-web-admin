@@ -14,6 +14,7 @@
     "ra-data-lb4": "^0.4.0",
     "react": "^18.2.0",
     "react-admin": "^4.16.18",
+    "react-admin-lb4": "^1.0.3",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {

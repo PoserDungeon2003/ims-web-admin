@@ -1,7 +1,9 @@
 import { DataProvider, fetchUtils } from "react-admin";
 import { stringify } from "query-string";
-import lb4Provider from "ra-data-lb4";
+// import lb4Provider from "ra-data-lb4";
 import jsonServerProvider from 'ra-data-json-server';
+//@ts-ignore
+import lb4Provider from 'react-admin-lb4';
 
 export const apiUrl = import.meta.env.VITE_BASE_URL_API;
 const httpClient = fetchUtils.fetchJson;
