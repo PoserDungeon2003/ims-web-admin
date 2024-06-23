@@ -8,7 +8,7 @@ export const UserList = () => {
     <List>
       {isSmall ? (
         <SimpleList
-          primaryText={(record) => record.name}
+          primaryText={(record) => record.fullName}
           secondaryText={(record) => record.username}
           tertiaryText={(record) => record.email}
         />
@@ -20,7 +20,9 @@ export const UserList = () => {
           <TextField source="fullName" />
           <TextField source="username" />
           <TextField source="password" />
-          <ReferenceField source="rolesId" reference="roles" />
+          <ReferenceField source="rolesId" reference="roles">
+            <TextField source="name" />
+          </ReferenceField>
         </Datagrid>
       )}
     </List>
@@ -29,14 +31,14 @@ export const UserList = () => {
 
 export const UserShow = () => (
   <Show>
-      <SimpleShowLayout>
-          <TextField source="id" />
-          <EmailField source="email" />
-          <NumberField source="phone" />
-          <TextField source="fullName" />
-          <TextField source="username" />
-          <TextField source="password" />
-          <ReferenceField source="rolesId" reference="roles" />
-      </SimpleShowLayout>
+    <SimpleShowLayout>
+      <TextField source="id" />
+      <EmailField source="email" />
+      <NumberField source="phone" />
+      <TextField source="fullName" />
+      <TextField source="username" />
+      <TextField source="password" />
+      <ReferenceField source="rolesId" reference="roles" />
+    </SimpleShowLayout>
   </Show>
 );
