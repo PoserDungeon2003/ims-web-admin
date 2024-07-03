@@ -1,7 +1,16 @@
-import { Create, Datagrid, Edit, EmailField, FunctionField, List, NumberField, NumberInput, ReferenceField, ReferenceInput, RichTextField, SelectInput, Show, SimpleForm, SimpleShowLayout, TextField, TextInput, useNotify, useRedirect } from 'react-admin';
+import { Create, Datagrid, Edit, EmailField, FunctionField, List, NumberField, NumberInput, ReferenceField, ReferenceInput, RichTextField, SearchInput, SelectInput, Show, SimpleForm, SimpleShowLayout, TextField, TextInput, useNotify, useRedirect } from 'react-admin';
+
+const internFilter = [
+  <SearchInput source="fullName" alwaysOn />,
+  <SearchInput source="email" />,
+  <SearchInput source="phone" />,
+  <ReferenceInput source="usersId" reference="users" label='Mentor' filter={{rolesId: 3}}>
+    <SelectInput optionText="fullName" />
+  </ReferenceInput>
+]
 
 export const InternList = () => (
-  <List>
+  <List filters={internFilter}>
     <Datagrid rowClick="edit">
       <TextField source="id" />
       <TextField source="fullName" />
