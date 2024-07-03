@@ -38,7 +38,9 @@ export const UserShow = () => (
       <TextField source="fullName" />
       <TextField source="username" />
       <TextField source="password" />
-      <ReferenceField source="rolesId" reference="roles" />
+      <ReferenceField source="rolesId" reference="roles">
+        <TextField source="name" />
+      </ReferenceField>
     </SimpleShowLayout>
   </Show>
 );
