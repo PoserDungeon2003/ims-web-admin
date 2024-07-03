@@ -1,4 +1,4 @@
-import { Datagrid, Edit, EmailField, List, NumberField, NumberInput, ReferenceField, ReferenceInput, SelectInput, Show, SimpleForm, SimpleShowLayout, TextField, TextInput } from 'react-admin';
+import { Create, Datagrid, Edit, EmailField, FunctionField, List, NumberField, NumberInput, ReferenceField, ReferenceInput, RichTextField, SelectInput, Show, SimpleForm, SimpleShowLayout, TextField, TextInput, useNotify, useRedirect } from 'react-admin';
 
 export const InternList = () => (
   <List>
@@ -6,11 +6,14 @@ export const InternList = () => (
       <TextField source="id" />
       <TextField source="fullName" />
       <EmailField source="email" />
-      <NumberField source="phone" />
+      <FunctionField
+        source="phone"
+        render={record => `${record.phone}`.replace(/,/g, '')}
+      />
       <TextField source="University" />
       <TextField source="major" />
       <TextField source="experiences" />
-      <ReferenceField source="usersId" reference="users">
+      <ReferenceField source="usersId" reference="users" label="Mentor">
         <TextField source="fullName" />
       </ReferenceField>
     </Datagrid>
@@ -49,3 +52,32 @@ export const InternEdit = () => (
     </SimpleForm>
   </Edit>
 );
+
+export const InternCreate = () => {
+  const notify = useNotify();
+  const redirect = useRedirect();
+
+  return (
+    <Create mutationOptions={{
+      onError(error, variables, context) {
+        notify(`Could not create intern`);
+      },
+      onSuccess(data, variables, context) {
+        notify(`Add new intern successfully`);
+        redirect('/intern');
+      },
+    }}>
+      <SimpleForm>
+        <TextInput source="fullName" />
+        <TextInput type='email' source="email" />
+        <NumberInput type='tel' source="phone" />
+        <TextInput source="University" />
+        <TextInput source="major" />
+        <TextInput source="experiences" />
+        <ReferenceInput source="usersId" reference="users" filter={{ rolesId: 3 }} label="Mentor">
+          <SelectInput optionText="fullName" />
+        </ReferenceInput>
+      </SimpleForm>
+    </Create>
+  );
+}
