@@ -9,6 +9,7 @@ import { Dashboard } from './components/dashboard'
 import { authProvider } from './authProvider'
 import { InternCreate, InternEdit, InternList, InternShow } from './components/intern'
 import { TaskList } from './components/task'
+import { WorkResultList } from './components/WorkResult'
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
       <Resource name="roles" list={ListGuesser} show={ShowGuesser} edit={EditGuesser} icon={UserIcon} />
       <Resource name="training-programs" list={ListGuesser} show={ShowGuesser} edit={EditGuesser} icon={UserIcon} />
       <Resource name="tasks" list={TaskList} show={ShowGuesser} edit={EditGuesser} icon={UserIcon} />
+      <Resource name="work-results" list={WorkResultList} show={ShowGuesser} edit={EditGuesser} icon={UserIcon} />
+      <Resource name="tasks" list={TaskList} show={ShowGuesser} edit={EditGuesser} icon={UserIcon} />
+
     </Admin>
   )
 }

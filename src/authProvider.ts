@@ -1,7 +1,7 @@
 import { AuthProvider } from "react-admin";
 import { apiUrl } from "./dataProvider";
 
-type LoginRS = {
+export type LoginRS = {
   email: string,
   id: number,
   name: string,
