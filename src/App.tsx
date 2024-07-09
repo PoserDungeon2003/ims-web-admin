@@ -22,7 +22,7 @@ function App() {
       <Resource name="training-programs" list={TrainingProgramList} show={TrainingProgramShow} edit={TrainingProgramEdit} create={TrainingProgramCreate} icon={UserIcon} />
       <Resource name="tasks" list={TaskList} show={TaskShow} edit={TaskEdit} create={TaskCreate} icon={UserIcon} />
       <Resource name="work-results" list={WorkResultList} show={ShowGuesser} edit={EditGuesser} icon={UserIcon} />
-      <Resource name="applications" list={TaskList} show={ShowGuesser} edit={EditGuesser} icon={UserIcon} />
+      <Resource name="applications" list={ListGuesser} show={ShowGuesser} edit={EditGuesser} icon={UserIcon} />
 
     </Admin>
   )

@@ -55,7 +55,7 @@ export const InternEdit = () => (
       <TextInput source="University" />
       <TextInput source="major" />
       <TextInput source="experiences" />
-      <ReferenceInput source="usersId" reference="users" >
+      <ReferenceInput source="usersId" reference="users" filter={{ rolesId: 3 }}>
         <SelectInput optionText="fullName" />
       </ReferenceInput>
     </SimpleForm>
