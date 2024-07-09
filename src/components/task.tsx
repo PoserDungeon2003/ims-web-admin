@@ -68,7 +68,7 @@ export const TaskCreate = () => {
   return (
     <Create mutationOptions={{
       onError(error, variables, context) {
-        notify(`Could not create intern`);
+        notify(`Could not create task`);
       },
       onSuccess(data, variables, context) {
         notify(`Add new task successfully`);

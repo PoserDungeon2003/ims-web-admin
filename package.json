@@ -10,13 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mui/x-charts": "^7.9.0",
     "ra-data-json-server": "^4.16.17",
     "ra-data-lb4": "^0.4.0",
     "ra-input-rich-text": "^5.0.3",
     "react": "^18.2.0",
     "react-admin": "^4.16.18",
     "react-admin-lb4": "^1.0.3",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.24.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
