@@ -1,14 +1,6 @@
 import { AuthProvider } from "react-admin";
 import { apiUrl } from "./dataProvider";
-
-export type LoginRS = {
-  email: string,
-  id: number,
-  name: string,
-  token?: string,
-  refreshToken?: string,
-  role?: string
-}
+import { LoginRS } from "./request/types";
 
 export const authProvider: AuthProvider = {
   // called when the user attempts to log in

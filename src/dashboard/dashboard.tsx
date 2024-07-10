@@ -21,6 +21,7 @@ import { mainListItems, secondaryListItems } from './components/listItems';
 import Chart from './components/Chart';
 import Deposits from './components/Deposits';
 import Orders from './components/Orders';
+import { useGetCompletionRate } from '../request/intern';
 
 function Copyright(props: any) {
   return (
@@ -90,6 +91,7 @@ const defaultTheme = createTheme();
 
 export default function Dashboard() {
   const [open, setOpen] = React.useState(true);
+  const completionRate = useGetCompletionRate()
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -194,11 +196,11 @@ export default function Dashboard() {
                 </Paper>
               </Grid>
               {/* Recent Orders */}
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
                   <Orders />
                 </Paper>
-              </Grid>
+              </Grid> */}
             </Grid>
             <Copyright sx={{ pt: 4 }} />
           </Container>

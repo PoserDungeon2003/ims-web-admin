@@ -50,7 +50,7 @@ export const WorkResultShow = () => (
 
 export const WorkResultCreate = () => {
   return (
-    <Create redirect={"show"}>
+    <Create redirect={"list"}>
       <SimpleForm>
         <NumberInput source="percentage" validate={[required(), maxValue(100)]} />
         <TextInput source="note" validate={[required()]}/>
