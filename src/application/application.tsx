@@ -130,7 +130,7 @@ export default function Application() {
                   {...register('resume')}
                 />
               </Grid>
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <TextField
                   fullWidth
                   id="coverletter"
@@ -138,8 +138,7 @@ export default function Application() {
                   type='file'
                   {...register('coverLetter')}
                 />
-                {/* <input type="file" name='CV'/> */}
-              </Grid>
+              </Grid> */}
               <Grid item xs={12}>
                 <TextField
                   fullWidth
