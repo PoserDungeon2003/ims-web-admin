@@ -11,3 +11,13 @@ export type LoginRS = {
   refreshToken?: string,
   role?: string
 }
+
+export type ApplyApplicationForm = {
+  firstName: string
+  lastName: string
+  email: string;
+  phone: number;
+  resume?: FileList;
+  coverLetter?: FileList;
+  appliedTo: string;
+}

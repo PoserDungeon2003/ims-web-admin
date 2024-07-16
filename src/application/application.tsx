@@ -10,23 +10,15 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useForm, SubmitHandler } from "react-hook-form"
-
-type FormInput = {
-  firstName: string
-  lastName: string
-  email: string;
-  phone: number;
-  resume?: string;
-  coverLetter?: string;
-  appliedTo: string;
-}
+import { ApplyApplicationForm } from '../request/types';
+import { applyApplication } from '../request/application';
 
 function Copyright(props: any) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href={'/#/apply'}>
+        IMS
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -42,9 +34,10 @@ export default function Application() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormInput>()
-  const onSubmit: SubmitHandler<FormInput> = (data) => {
+  } = useForm<ApplyApplicationForm>()
+  const onSubmit: SubmitHandler<ApplyApplicationForm> = async (data) => {
     console.log(data)
+    await applyApplication(data)    
   }
 
   return (
@@ -118,7 +111,11 @@ export default function Application() {
                   {...register('phone', {
                     required: 'Phone number is required',
                     minLength: { value: 10, message: 'Phone number must be at least 10 digits' },
-                    maxLength: { value: 10, message: 'Phone number must be at most 10 digits' }
+                    maxLength: { value: 10, message: 'Phone number must be at most 10 digits' },
+                    pattern: {
+                      value: /^[0-9]*$/,
+                      message: 'Invalid phone number'
+                    }
                   })}
                 />
                 {errors.phone && <p style={{ color: 'red', fontWeight: 'bold' }}>*{errors.phone.message}</p>}
@@ -129,6 +126,7 @@ export default function Application() {
                   id="resume"
                   label="Resume"
                   type='file'
+                  inputProps={{ accept: 'application/pdf' }}
                   {...register('resume')}
                 />
               </Grid>
