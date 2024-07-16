@@ -20,6 +20,7 @@
     "react-admin": "^4.16.18",
     "react-admin-lb4": "^1.0.3",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.52.1",
     "react-router-dom": "^6.24.1"
   },
   "devDependencies": {

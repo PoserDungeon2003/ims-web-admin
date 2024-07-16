@@ -7,12 +7,16 @@ function preventDefault(event: React.MouseEvent) {
   event.preventDefault();
 }
 
-export default function Deposits() {
+type DepositsProps = {
+  completionRate?: number
+}
+
+export default function Deposits({ completionRate }: DepositsProps) {
   return (
     <React.Fragment>
-      <Title>Recent Deposits</Title>
+      <Title>Task Completion Rate</Title>
       <Typography component="p" variant="h4">
-        $3,024.00
+        {(completionRate || 1) * 100}%
       </Typography>
       <Typography color="text.secondary" sx={{ flex: 1 }}>
         on 15 March, 2019

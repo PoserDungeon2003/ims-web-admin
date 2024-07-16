@@ -3,12 +3,12 @@ import request, { BASE_URL, setTokenHeader } from "./request"
 
 export async function GetCompletionRate(): Promise<number> {
   setTokenHeader()
-  return request.get(`${BASE_URL}/users/count`)
+  return request.get(`${BASE_URL}/tasks-management/completion-rate`)
 }
 
 export function useGetCompletionRate() {
-  return useQuery({
+  return useQuery<number>({
     queryKey: ['completion-rate'],
-    queryFn: GetCompletionRate,
+    queryFn: () => GetCompletionRate(),
   })
 }

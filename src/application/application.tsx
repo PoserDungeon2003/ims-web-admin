@@ -1,10 +1,7 @@
-import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -12,6 +9,17 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useForm, SubmitHandler } from "react-hook-form"
+
+type FormInput = {
+  firstName: string
+  lastName: string
+  email: string;
+  phone: number;
+  resume?: string;
+  coverLetter?: string;
+  appliedTo: string;
+}
 
 function Copyright(props: any) {
   return (
@@ -30,14 +38,14 @@ function Copyright(props: any) {
 const defaultTheme = createTheme();
 
 export default function Application() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormInput>()
+  const onSubmit: SubmitHandler<FormInput> = (data) => {
+    console.log(data)
+  }
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -55,57 +63,96 @@ export default function Application() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            Apply Now
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="given-name"
-                  name="firstName"
-                  required
                   fullWidth
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  {...register('firstName', {
+                    required: 'First name is required'
+                  })}
                 />
+                {errors.firstName && <p style={{ color: 'red', fontWeight: 'bold' }}>*{errors.firstName.message}</p>}
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  required
                   fullWidth
                   id="lastName"
                   label="Last Name"
-                  name="lastName"
                   autoComplete="family-name"
+                  {...register('lastName', {
+                    required: 'Last name is required'
+                  })}
                 />
+                {errors.lastName && <p style={{ color: 'red', fontWeight: 'bold' }}>*{errors.lastName.message}</p>}
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
                   fullWidth
                   id="email"
                   label="Email Address"
-                  name="email"
                   autoComplete="email"
+                  {...register('email', {
+                    required: 'Email is required',
+                    pattern: {
+                      value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                      message: 'Invalid email address'
+                    }
+                  })}
+                />
+                {errors.email && <p style={{ color: 'red', fontWeight: 'bold' }}>*{errors.email.message}</p>}
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  id="phone"
+                  label="Phone"
+                  type='tel'
+                  autoComplete="phone"
+                  {...register('phone', {
+                    required: 'Phone number is required',
+                    minLength: { value: 10, message: 'Phone number must be at least 10 digits' },
+                    maxLength: { value: 10, message: 'Phone number must be at most 10 digits' }
+                  })}
+                />
+                {errors.phone && <p style={{ color: 'red', fontWeight: 'bold' }}>*{errors.phone.message}</p>}
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  id="resume"
+                  label="Resume"
+                  type='file'
+                  {...register('resume')}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
                   fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
+                  id="coverletter"
+                  label="Cover Letter"
+                  type='file'
+                  {...register('coverLetter')}
                 />
+                {/* <input type="file" name='CV'/> */}
               </Grid>
               <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
+                <TextField
+                  fullWidth
+                  id="appliedTo"
+                  label="Applied to"
+                  type='text'
+                  {...register('appliedTo', {
+                    required: 'Applied to is required'
+                  })}
                 />
+                {errors.appliedTo && <p style={{ color: 'red', fontWeight: 'bold' }}>*{errors.appliedTo.message}</p>}
               </Grid>
             </Grid>
             <Button
@@ -114,16 +161,9 @@ export default function Application() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              Apply
             </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="#" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
-            </Grid>
-          </Box>
+          </form>
         </Box>
         <Copyright sx={{ mt: 5 }} />
       </Container>

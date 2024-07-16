@@ -21,7 +21,7 @@ import { mainListItems, secondaryListItems } from './components/listItems';
 import Chart from './components/Chart';
 import Deposits from './components/Deposits';
 import Orders from './components/Orders';
-import { useGetCompletionRate } from '../request/intern';
+import { useGetCompletionRate } from '../request/task';
 
 function Copyright(props: any) {
   return (
@@ -192,7 +192,7 @@ export default function Dashboard() {
                     height: 240,
                   }}
                 >
-                  <Deposits />
+                  <Deposits completionRate={completionRate.data}/>
                 </Paper>
               </Grid>
               {/* Recent Orders */}
