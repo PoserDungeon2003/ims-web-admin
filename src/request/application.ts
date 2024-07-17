@@ -16,10 +16,6 @@ export function applyApplication(data: ApplyApplicationForm): Promise<any> {
   }
   if (data.coverLetter) {
     // formData.append('coverLetter', data.coverLetter[0]);
-    console.log('formData', formData.get('coverLetter'));
   }
-  
-  console.log('formData', formData.getAll('resume'));
-
   return request.postMultiPart(`${BASE_URL}/applications`, formData)
 }

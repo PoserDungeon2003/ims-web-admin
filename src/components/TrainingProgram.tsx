@@ -17,8 +17,7 @@ export const TrainingProgramList = () => (
         )}
       />
       <TextField source="code" />
-      <TextField source="createdBy" />
-      <ReferenceField source="usersId" reference="users" label="Coordinator">
+      <ReferenceField source="usersId" reference="users" label="Created By">
         <TextField source="fullName" />
       </ReferenceField>
     </Datagrid>
@@ -35,8 +34,7 @@ export const TrainingProgramShow = () => {
         <TextField source="name" />
         <RichTextField source="content" />
         <TextField source="code" />
-        <TextField source="createdBy" />
-        <ReferenceField source="usersId" reference="users" label="Coordinator">
+        <ReferenceField source="usersId" reference="users" label="Created By">
           <TextField source="fullName" />
         </ReferenceField>
       </SimpleShowLayout>

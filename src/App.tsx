@@ -1,7 +1,7 @@
 import './App.css'
 import { Admin, CustomRoutes, EditGuesser, ListGuesser, Resource, ShowGuesser } from 'react-admin'
 import { dataProvider } from './dataProvider'
-import { UserList, UserShow } from './components/users'
+import { UserCreate, UserEdit, UserList, UserShow } from './components/users'
 import { PostCreate, PostEdit, PostList } from './components/posts'
 import PostIcon from "@mui/icons-material/Book";
 import UserIcon from "@mui/icons-material/Group";
@@ -24,6 +24,8 @@ import Application from './application/application'
 import { TasksManagementCreate, TasksManagementEdit, TasksManagementList, TasksManagementShow } from './components/TasksManagement'
 import { FeedBackList, FeedbackShow as FeedBackShow } from './components/Feedback'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ApplicationEdit, ApplicationList, ApplicationShow } from './components/ApplicationManagement'
+import { InterviewCreate, InterviewEdit, InterviewList, InterviewShow } from './components/interview'
 
 function App() {
   const queryClient = new QueryClient()
@@ -32,17 +34,12 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Admin authProvider={authProvider} dataProvider={dataProvider}
         dashboard={Dashboard}>
-        <Resource name="posts"
-          list={PostList}
-          edit={PostEdit}
-          create={PostCreate}
-          icon={PostIcon}
-        />
         <Resource
           name="users"
           list={UserList}
           show={UserShow}
-          edit={EditGuesser}
+          edit={UserEdit}
+          create={UserCreate}
           icon={UserIcon}
         />
         <Resource
@@ -86,9 +83,9 @@ function App() {
         />
         <Resource
           name="applications"
-          list={ListGuesser}
-          show={ShowGuesser}
-          edit={EditGuesser}
+          list={ApplicationList}
+          show={ApplicationShow}
+          edit={ApplicationEdit}
           icon={EmailIcon}
         />
         <Resource
@@ -105,6 +102,13 @@ function App() {
           show={FeedBackShow}
           edit={EditGuesser}
           icon={FeedbackIcon}
+        />
+        <Resource
+          name="interviews"
+          list={InterviewList}
+          show={InterviewShow}
+          edit={InterviewEdit}
+          create={InterviewCreate}
         />
         <CustomRoutes noLayout>
           <Route path='/apply' element={<Application />} />
