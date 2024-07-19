@@ -16,7 +16,7 @@ export default function Deposits({ completionRate }: DepositsProps) {
     <React.Fragment>
       <Title>Task Completion Rate</Title>
       <Typography component="p" variant="h4">
-        {(completionRate || 1) * 100}%
+        {Math.round((completionRate || 1) * 100)}%
       </Typography>
       <Typography color="text.secondary" sx={{ flex: 1 }}>
         on 15 March, 2019
