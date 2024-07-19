@@ -53,8 +53,8 @@ export const TrainingProgramEdit = () => {
         <RichTextInput source="content" />
         <TextInput source="code" />
         <TextInput source="createdBy" />
-        <ReferenceInput source="usersId" reference="users" filter={{ rolesId: 2 }}>
-          <SelectInput optionText="fullName" />
+        <ReferenceInput label="Coordinator" source="usersId" reference="users" filter={{ rolesId: 2 }}>
+          <SelectInput optionText="fullName" label="Coordinator"/>
         </ReferenceInput>
       </SimpleForm>
     </Edit>
@@ -67,10 +67,10 @@ export const TrainingProgramCreate = () => {
 
   return (
     <Create mutationOptions={{
-      onError(error, variables, context) {
+      onError(error: any, variables: any, context: any) {
         notify(`Could not create intern`);
       },
-      onSuccess(data, variables, context) {
+      onSuccess(data: any, variables: any, context: any) {
         notify(`Add new training program successfully`);
         redirect('/training-programs');
       },
@@ -79,8 +79,8 @@ export const TrainingProgramCreate = () => {
         <TextInput source="name" />
         <RichTextInput source="content" />
         <TextInput source="code" />
-        <ReferenceInput source="usersId" reference="users" filter={{ rolesId: 2 }}>
-          <SelectInput optionText="fullName" />
+        <ReferenceInput source="usersId" label="Coordinator" reference="users" filter={{ rolesId: 2 }}>
+          <SelectInput optionText="fullName" label="Coordinator"/>
         </ReferenceInput>
       </SimpleForm>
     </Create>

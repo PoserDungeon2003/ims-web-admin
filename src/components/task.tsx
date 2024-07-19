@@ -10,7 +10,7 @@ export const TaskList = () => {
         {/* <TextField source="description" /> */}
         <FunctionField
           source="description"
-          render={record => {
+          render={(record: any) => {
             return (
               <div style={{ maxWidth: '250px', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>
                 {record ? record.description : 'text'}
@@ -35,8 +35,8 @@ export const TaskEdit = () => (
       <TextInput source="id" />
       <RichTextInput source="description" />
       <TextInput source="name" />
-      <ReferenceInput source="usersId" reference="users" filter={{ rolesId: 3 }}>
-        <SelectInput optionText="fullName" />
+      <ReferenceInput source="usersId" label="Mentor" reference="users" filter={{ rolesId: 3 }}>
+        <SelectInput optionText="fullName" label="Mentor"/>
       </ReferenceInput>
       <ReferenceInput source="trainingProgramId" reference="training-programs">
         <SelectInput optionText="code" />
@@ -79,8 +79,8 @@ export const TaskCreate = () => {
       <SimpleForm>
         <TextInput source="name" />
         <RichTextInput source="description" />
-        <ReferenceInput source="usersId" reference="users" filter={{ rolesId: 3 }}>
-          <SelectInput optionText="fullName" />
+        <ReferenceInput label="Mentor" source="usersId" reference="users" filter={{ rolesId: 3 }}>
+          <SelectInput label="Mentor" optionText="fullName" />
         </ReferenceInput>
         <ReferenceInput source="trainingProgramId" reference="training-programs">
           <SelectInput optionText="code" />

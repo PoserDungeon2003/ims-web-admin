@@ -17,7 +17,7 @@ export const InternList = () => (
       <EmailField source="email" />
       <FunctionField
         source="phone"
-        render={record => `${record.phone}`.replace(/,/g, '')}
+        render={(record: any) => `${record.phone}`.replace(/,/g, '')}
       />
       <TextField source="University" />
       <TextField source="major" />
@@ -55,8 +55,8 @@ export const InternEdit = () => (
       <TextInput source="University" />
       <TextInput source="major" />
       <TextInput source="experiences" />
-      <ReferenceInput source="usersId" reference="users" filter={{ rolesId: 3 }}>
-        <SelectInput optionText="fullName" />
+      <ReferenceInput source="usersId" label="Mentor" reference="users" filter={{ rolesId: 3 }}>
+        <SelectInput optionText="fullName" label="Mentor"/>
       </ReferenceInput>
     </SimpleForm>
   </Edit>
@@ -68,10 +68,10 @@ export const InternCreate = () => {
 
   return (
     <Create mutationOptions={{
-      onError(error, variables, context) {
+      onError(error: any, variables: any, context: any) {
         notify(`Could not create intern`);
       },
-      onSuccess(data, variables, context) {
+      onSuccess(data: any, variables: any, context: any) {
         notify(`Add new intern successfully`);
         redirect('/intern');
       },
@@ -84,7 +84,7 @@ export const InternCreate = () => {
         <TextInput source="major" />
         <TextInput source="experiences" />
         <ReferenceInput source="usersId" reference="users" filter={{ rolesId: 3 }} label="Mentor">
-          <SelectInput optionText="fullName" />
+          <SelectInput label="Mentor" optionText="fullName" />
         </ReferenceInput>
       </SimpleForm>
     </Create>

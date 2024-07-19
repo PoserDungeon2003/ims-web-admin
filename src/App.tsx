@@ -22,7 +22,7 @@ import { TrainingProgramCreate, TrainingProgramEdit, TrainingProgramList, Traini
 import { Route } from 'react-router-dom'
 import Application from './application/application'
 import { TasksManagementCreate, TasksManagementEdit, TasksManagementList, TasksManagementShow } from './components/TasksManagement'
-import { FeedBackList, FeedbackShow as FeedBackShow } from './components/Feedback'
+import { FeedbackEdit, FeedBackList, FeedbackShow as FeedBackShow } from './components/Feedback'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ApplicationEdit, ApplicationList, ApplicationShow } from './components/ApplicationManagement'
 import { InterviewCreate, InterviewEdit, InterviewList, InterviewShow } from './components/interview'
@@ -100,7 +100,7 @@ function App() {
           name="feedbacks"
           list={FeedBackList}
           show={FeedBackShow}
-          edit={EditGuesser}
+          edit={FeedbackEdit}
           icon={FeedbackIcon}
         />
         <Resource

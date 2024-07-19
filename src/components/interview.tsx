@@ -1,5 +1,4 @@
-import { RichTextInput } from "ra-input-rich-text";
-import { ChoicesContext, Create, Datagrid, DateField, DateInput, DateTimeInput, Edit, List, ReferenceField, ReferenceInput, RichTextField, SelectInput, Show, SimpleForm, SimpleShowLayout, TextField, TextInput } from "react-admin";
+import { Create, Datagrid, DateField, DateInput, DateTimeInput, Edit, List, ReferenceField, ReferenceInput, SelectInput, Show, SimpleForm, SimpleShowLayout, TextField, TextInput } from "react-admin";
 
 export const InterviewList = () => (
   <List>
@@ -37,7 +36,7 @@ export const InterviewEdit = () => (
       ]}>
       </SelectInput>
       <ReferenceInput source="usersId" reference="users" filter={{ rolesId: 1 }} label="Mentor">
-        <SelectInput optionText="fullName" />
+        <SelectInput optionText="fullName" label="HR Manager"/>
       </ReferenceInput>
       <ReferenceInput source="applicationId" reference="applications" />
     </SimpleForm>
@@ -76,7 +75,7 @@ export const InterviewCreate = () => (
         { id: 'rejected', name: 'Rejected' },
       ]}>
       </SelectInput>
-      <ReferenceInput source="usersId" reference="users" filter={{ rolesId: 1 }} label="Mentor">
+      <ReferenceInput source="usersId" label="HR Manager" reference="users" filter={{ rolesId: 1 }}>
         <SelectInput optionText="fullName" />
       </ReferenceInput>
       <ReferenceInput source="applicationId" reference="applications" />
