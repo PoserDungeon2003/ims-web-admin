@@ -8,7 +8,10 @@ export const ApplicationList = () => (
       <TextField source="id" />
       <TextField source="fullName" />
       <EmailField source="email" />
-      <NumberField source="phone" />
+      <FunctionField
+        source="phone"
+        render={(record: any) => `${record.phone}`.replace(/,/g, '')}
+      />
       <FunctionField
         source="resume"
         render={(record: any) => (
@@ -49,7 +52,10 @@ export const ApplicationShow = () => (
       <TextField source="id" />
       <TextField source="fullName" />
       <EmailField source="email" />
-      <NumberField source="phone" />
+      <FunctionField
+        source="phone"
+        render={(record: any) => `${record.phone}`.replace(/,/g, '')}
+      />
       <UrlField source="resume" />
       <UrlField source="coverLetter" />
       <TextField source="appliedTo" />

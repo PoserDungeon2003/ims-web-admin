@@ -1,4 +1,4 @@
-import { BooleanField, BooleanInput, Create, Datagrid, Edit, EmailField, List, NumberField, NumberInput, ReferenceField, ReferenceInput, SelectInput, Show, SimpleForm, SimpleList, SimpleShowLayout, TextField, TextInput, UrlField } from 'react-admin';
+import { BooleanField, BooleanInput, Create, Datagrid, Edit, EmailField, FunctionField, List, NumberField, NumberInput, ReferenceField, ReferenceInput, SelectInput, Show, SimpleForm, SimpleList, SimpleShowLayout, TextField, TextInput, UrlField } from 'react-admin';
 import { useMediaQuery, Theme } from "@mui/material";
 import MyUrlField from './MyUrlField';
 
@@ -16,7 +16,10 @@ export const UserList = () => {
         <Datagrid rowClick="show">
           <TextField source="id" />
           <EmailField source="email" />
-          <NumberField source="phone" />
+          <FunctionField
+            source="phone"
+            render={(record: any) => `${record.phone}`.replace(/,/g, '')}
+          />
           <TextField source="fullName" />
           <TextField source="username" />
           <BooleanField source="emailVerified" />
@@ -36,7 +39,10 @@ export const UserShow = () => (
     <SimpleShowLayout>
       <TextField source="id" />
       <EmailField source="email" />
-      <NumberField source="phone" />
+      <FunctionField
+        source="phone"
+        render={(record: any) => `${record.phone}`.replace(/,/g, '')}
+      />
       <TextField source="fullName" />
       <TextField source="username" />
       <BooleanField source="emailVerified" />
@@ -75,7 +81,7 @@ export const UserCreate = () => {
         <TextInput source="realm" />
         <TextInput source="username" />
         <TextInput source="email" />
-        <BooleanInput source="emailVerified" defaultValue={false}/>
+        <BooleanInput source="emailVerified" defaultValue={false} />
         <TextInput source="verificationToken" />
         <NumberInput source="phone" />
         <TextInput source="fullName" />
