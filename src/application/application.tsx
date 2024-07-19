@@ -9,9 +9,11 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useForm, SubmitHandler } from "react-hook-form"
+import { useForm, SubmitHandler, set } from "react-hook-form"
 import { ApplyApplicationForm } from '../request/types';
 import { applyApplication } from '../request/application';
+import Alert from '@mui/material/Alert';
+import { useEffect, useState } from 'react';
 
 function Copyright(props: any) {
   return (
@@ -26,10 +28,11 @@ function Copyright(props: any) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function Application() {
+  const [open, setOpen] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -37,8 +40,21 @@ export default function Application() {
   } = useForm<ApplyApplicationForm>()
   const onSubmit: SubmitHandler<ApplyApplicationForm> = async (data) => {
     console.log(data)
-    await applyApplication(data)    
+    let result = await applyApplication(data) 
+    if (result) {
+      setOpen(true)
+    }   
   }
+
+  useEffect(() => {
+    let timer: any
+    if (open) {
+      timer = setTimeout(() => {
+        setOpen(false)
+      }, 3000)
+    }
+    return () => clearTimeout(timer)
+  }, [open])
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -152,6 +168,7 @@ export default function Application() {
                 {errors.appliedTo && <p style={{ color: 'red', fontWeight: 'bold' }}>*{errors.appliedTo.message}</p>}
               </Grid>
             </Grid>
+            {open && <Alert severity="success">Application submitted successfully!</Alert>}
             <Button
               type="submit"
               fullWidth

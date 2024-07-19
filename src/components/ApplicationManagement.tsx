@@ -51,7 +51,7 @@ export const ApplicationShow = () => (
           <EmailField source="email" />
           <NumberField source="phone" />
           <UrlField source="resume" />
-          <TextField source="coverLetter" />
+          <UrlField source="coverLetter" />
           <TextField source="appliedTo" />
           <TextField source="status" />
       </SimpleShowLayout>
