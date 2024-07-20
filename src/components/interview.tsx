@@ -10,7 +10,13 @@ export const InterviewList = () => (
       <DateField source="time" />
       <TextField source="location" />
       <FunctionField source="quiz" style={{maxWidth: '150px', overflow: 'hidden', whiteSpace: 'collapse', textOverflow: 'ellipsis'}}
-       render={(record: any) => `${JSON.stringify(record.quiz)}`} />
+       render={(record: any) => {
+        return (
+          <div style={{maxWidth: '150px', maxHeight: '150px', overflow: 'hidden', whiteSpace: 'collapse', textOverflow: 'ellipsis'}}>
+            {JSON.stringify(record.quiz)}
+          </div>
+        )
+       }} />
       {/* <TextField source="quiz" /> */}
       <TextField source="status" />
       <ReferenceField source="usersId" reference="users" label="HR Manager">
@@ -57,7 +63,10 @@ export const InterviewShow = () => (
       <TextField source="intervieweeName" />
       <DateField source="time" />
       <TextField source="location" />
-      <TextField source="quiz" />
+      {/* <TextField source="quiz" /> */}
+      <FunctionField source="quiz" style={{maxWidth: '150px', overflow: 'hidden', whiteSpace: 'collapse', textOverflow: 'ellipsis'}} 
+        render={(record: any) => `${JSON.stringify(record.quiz)}`}
+      />
       <TextField source="status" />
       <ReferenceField source="usersId" reference="users" label="HR Manager">
         <TextField source="fullName" />
