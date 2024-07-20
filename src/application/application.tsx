@@ -11,9 +11,13 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useForm, SubmitHandler, set } from "react-hook-form"
 import { ApplyApplicationForm } from '../request/types';
-import { applyApplication } from '../request/application';
+import { applyApplication, useGetOpenPosition } from '../request/application';
 import Alert from '@mui/material/Alert';
 import { useEffect, useState } from 'react';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
+import _ from 'lodash';
 
 function Copyright(props: any) {
   return (
@@ -32,7 +36,8 @@ const defaultTheme = createTheme();
 
 export default function Application() {
   const [open, setOpen] = useState(false);
-
+  const openPosition = useGetOpenPosition({ where: { status: 'open' }, fields: { usersId: false } })
+  
   const {
     register,
     handleSubmit,
@@ -40,10 +45,10 @@ export default function Application() {
   } = useForm<ApplyApplicationForm>()
   const onSubmit: SubmitHandler<ApplyApplicationForm> = async (data) => {
     console.log(data)
-    let result = await applyApplication(data) 
+    let result = await applyApplication(data)
     if (result) {
       setOpen(true)
-    }   
+    }
   }
 
   useEffect(() => {
@@ -156,7 +161,23 @@ export default function Application() {
                 />
               </Grid> */}
               <Grid item xs={12}>
-                <TextField
+                <InputLabel id="demo-simple-select-label">Open positions</InputLabel>
+                <Select
+                  {...register('appliedTo', {
+                    required: 'Applied to is required'
+                  })}
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  // value={age}
+                  label="Applied to"
+                  fullWidth
+                // onChange={handleChange}
+                >
+                  {_.map(openPosition.data, (position, index) => (
+                  <MenuItem key={index} value={position.name}>{position.name}</MenuItem>
+                  ))}
+                </Select>
+                {/* <TextField
                   fullWidth
                   id="appliedTo"
                   label="Applied to"
@@ -164,7 +185,7 @@ export default function Application() {
                   {...register('appliedTo', {
                     required: 'Applied to is required'
                   })}
-                />
+                /> */}
                 {errors.appliedTo && <p style={{ color: 'red', fontWeight: 'bold' }}>*{errors.appliedTo.message}</p>}
               </Grid>
             </Grid>

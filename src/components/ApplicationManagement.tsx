@@ -1,4 +1,4 @@
-import { Datagrid, DateField, DateInput, Edit, EmailField, FunctionField, List, NumberField, NumberInput, Show, SimpleForm, SimpleShowLayout, TextField, TextInput, UrlField } from "react-admin";
+import { Datagrid, DateField, DateInput, Edit, EmailField, FunctionField, List, NumberField, NumberInput, SelectInput, Show, SimpleForm, SimpleShowLayout, TextField, TextInput, UrlField } from "react-admin";
 
 export const ApplicationList = () => (
   <List>
@@ -39,7 +39,12 @@ export const ApplicationEdit = () => (
       <TextInput source="resume" />
       <TextInput source="coverLetter" />
       <TextInput source="appliedTo" />
-      <TextInput source="status" />
+      <SelectInput source="status" choices={[
+        { id: 'pending', name: 'Pending' },
+        { id: 'accepted', name: 'Accepted' },
+        { id: 'rejected', name: 'Rejected' },
+      ]}>
+      </SelectInput>
     </SimpleForm>
   </Edit>
 );

@@ -1,5 +1,18 @@
+import { useQuery } from "@tanstack/react-query"
 import request, { BASE_URL, setTokenHeader } from "./request"
-import { ApplyApplicationForm } from "./types"
+import { ApplyApplicationForm, JobOpening } from "./types"
+
+export function getOpenPosition(filter: object): Promise<JobOpening[]> {
+  setTokenHeader()
+  return request.get(`${BASE_URL}/job-positions?filter=${JSON.stringify(filter)}`, filter)
+}
+
+export const useGetOpenPosition = (filter: object) => {
+  return useQuery<JobOpening[]>({
+    queryKey: ['job-positions', filter],
+    queryFn: () => getOpenPosition(filter),
+  })
+}
 
 export function applyApplication(data: ApplyApplicationForm): Promise<any> {
   let formData = new FormData()

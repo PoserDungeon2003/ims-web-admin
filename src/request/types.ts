@@ -21,3 +21,10 @@ export type ApplyApplicationForm = {
   coverLetter?: FileList;
   appliedTo: string;
 }
+
+export type JobOpening = {
+  id: number;
+  name: string;
+  status: 'open' | 'closed';
+  description?: string;
+}

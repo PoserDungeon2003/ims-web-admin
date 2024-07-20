@@ -26,6 +26,7 @@ import { FeedbackEdit, FeedBackList, FeedbackShow as FeedBackShow } from './comp
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ApplicationEdit, ApplicationList, ApplicationShow } from './components/ApplicationManagement'
 import { InterviewCreate, InterviewEdit, InterviewList, InterviewShow } from './components/interview'
+import { JobPositionCreate, JobPositionEdit, JobPositionList, JobPositionShow } from './components/job-position'
 
 function App() {
   const queryClient = new QueryClient()
@@ -109,6 +110,13 @@ function App() {
           show={InterviewShow}
           edit={InterviewEdit}
           create={InterviewCreate}
+        />
+        <Resource
+          name="job-positions"
+          list={JobPositionList}
+          show={JobPositionShow}
+          edit={JobPositionEdit}
+          create={JobPositionCreate}
         />
         <CustomRoutes noLayout>
           <Route path='/apply' element={<Application />} />
