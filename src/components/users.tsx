@@ -22,9 +22,9 @@ export const UserList = () => {
           />
           <TextField source="fullName" />
           <TextField source="username" />
-          <BooleanField source="emailVerified" />
+          {/* <BooleanField source="emailVerified" />
           <TextField source="realm" />
-          <TextField source="verificationToken" />
+          <TextField source="verificationToken" /> */}
           <ReferenceField source="rolesId" reference="roles">
             <TextField source="name" />
           </ReferenceField>
