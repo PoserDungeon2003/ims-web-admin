@@ -1,4 +1,4 @@
-import { Create, Datagrid, DateField, DateInput, DateTimeInput, Edit, List, ReferenceField, ReferenceInput, SelectInput, Show, SimpleForm, SimpleShowLayout, TextField, TextInput } from "react-admin";
+import { Create, Datagrid, DateField, DateInput, DateTimeInput, Edit, FunctionField, List, ReferenceField, ReferenceInput, SelectInput, Show, SimpleForm, SimpleShowLayout, TextField, TextInput } from "react-admin";
 
 export const InterviewList = () => (
   <List>
@@ -9,7 +9,9 @@ export const InterviewList = () => (
       <TextField source="intervieweeName" />
       <DateField source="time" />
       <TextField source="location" />
-      <TextField source="quiz" />
+      <FunctionField source="quiz" style={{maxWidth: '150px', overflow: 'hidden', whiteSpace: 'collapse', textOverflow: 'ellipsis'}}
+       render={(record: any) => `${JSON.stringify(record.quiz)}`} />
+      {/* <TextField source="quiz" /> */}
       <TextField source="status" />
       <ReferenceField source="usersId" reference="users" label="HR Manager">
         <TextField source="fullName" />
@@ -29,6 +31,9 @@ export const InterviewEdit = () => (
       <DateInput source="time" />
       <TextInput source="location" />
       <TextInput source="quiz" />
+      <FunctionField source="quiz" style={{maxWidth: '150px', overflow: 'hidden', whiteSpace: 'collapse', textOverflow: 'ellipsis'}} 
+        render={(record: any) => `${JSON.stringify(record.quiz)}`}
+      />
       <SelectInput source="status" choices={[
         { id: 'pending', name: 'Pending' },
         { id: 'accepted', name: 'Accepted' },
@@ -78,7 +83,7 @@ export const InterviewCreate = () => (
       <ReferenceInput source="usersId" label="HR Manager" reference="users" filter={{ rolesId: 1 }}>
         <SelectInput optionText="fullName" />
       </ReferenceInput>
-      <ReferenceInput source="applicationId" reference="applications" />
+      <ReferenceInput source="applicationId" reference="applications" filter={{status: 'accepted'}}/>
     </SimpleForm>
   </Create>
 );
